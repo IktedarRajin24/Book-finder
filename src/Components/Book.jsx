@@ -8,13 +8,15 @@ const Book = ({ book, onFav }) => {
         <img className="max-w-[144px]" src={image} alt="book name" />
       </div>
       <div className="space-y-3">
-        <h4 className="text-lg font-bold lg:text-xl">{title}</h4>
+        <h4 className="text-lg font-bold lg:text-xl">
+          {title} ({publish_date.split(",")[1]})
+        </h4>
         <p className="text-xs lg:text-sm">
           By : <span>{author}</span>
         </p>
-        <p className="text-xs lg:text-sm">
+        {/* <p className="text-xs lg:text-sm">
           Publish date : <span>{publish_date}</span>
-        </p>
+        </p> */}
         <div className="flex items-center justify-between">
           <h4 className="text-lg font-bold lg:text-xl">${book.price}</h4>
           <div className="flex items-center space-x-1">
@@ -75,7 +77,10 @@ const Book = ({ book, onFav }) => {
               Favourite
             </button>
           ) : (
-            <button className="flex min-w-[132px] items-center justify-center gap-1 rounded-md bg-[#1C4336]/[14%] py-1.5 text-[#1C4336] transition-all hover:bg-[#1C4336]/[24%] lg:py-1.5" onClick={()=>onFav(id)}>
+            <button
+              className="flex min-w-[132px] items-center justify-center gap-1 rounded-md bg-[#1C4336]/[14%] py-1.5 text-[#1C4336] transition-all hover:bg-[#1C4336]/[24%] lg:py-1.5"
+              onClick={() => onFav(id)}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
