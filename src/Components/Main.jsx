@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Actions from "./Actions";
 import Books from "./Books";
 
-const books = [
+const allBooks = [
   {
     id: 1,
     title: "To Kill a Mockingbird",
@@ -186,9 +186,29 @@ const books = [
 ];
 
 const Main = () => {
+  const [books, setBooks] = useState(allBooks);
+  const handleSortBooks = (sortBy) => {
+    let sortedBooks;
+    if (sortBy === "name_asc") {
+      sortedBooks = books.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (sortBy === "name_desc") {
+      sortedBooks = books.sort((a, b) => b.title.localeCompare(a.title));
+    } else if (sortBy === "year_asc") {
+      sortedBooks = books.sort(
+        (a, b) => a.publish_date.split(", ")[1] - b.publish_date.split(", ")[1]
+      );
+    } else if (sortBy === "year_desc") {
+      sortedBooks = books.sort(
+        (a, b) => b.publish_date.split(", ")[1] - a.publish_date.split(", ")[1]
+      );
+    } else {
+      sortedBooks = books;
+    }
+    setBooks([...sortedBooks]);
+  };
   return (
     <main className="my-10 lg:my-14">
-      <Actions />
+      <Actions onSortBooks={handleSortBooks} />
       <Books books={books} />
     </main>
   );

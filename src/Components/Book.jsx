@@ -1,20 +1,24 @@
 import React from "react";
 
 const Book = ({ book }) => {
+  const { image, title, author, publish_date, rating } = book;
   return (
-    <div className="space-y-3">
+    <div className="space-y-3 h-[450px] relative">
       <div className="flex items-center justify-center rounded-md border border-[#324251]/30 bg-white p-4">
-        <img className="max-w-[144px]" src={book.image} alt="book name" />
+        <img className="max-w-[144px]" src={image} alt="book name" />
       </div>
       <div className="space-y-3">
-        <h4 className="text-lg font-bold lg:text-xl">{book.title}</h4>
+        <h4 className="text-lg font-bold lg:text-xl">{title}</h4>
         <p className="text-xs lg:text-sm">
-          By : <span>{book.author}</span>
+          By : <span>{author}</span>
+        </p>
+        <p className="text-xs lg:text-sm">
+          Publish date : <span>{publish_date}</span>
         </p>
         <div className="flex items-center justify-between">
           <h4 className="text-lg font-bold lg:text-xl">${book.price}</h4>
           <div className="flex items-center space-x-1">
-            {Array.from({ length: book.rating }).map((_, index) => (
+            {Array.from({ length: rating }).map((_, index) => (
               <img
                 key={index}
                 src="./images/star.svg"
@@ -22,11 +26,11 @@ const Book = ({ book }) => {
                 className="w-5 h-5"
               />
             ))}
-            <span className="text-xs lg:text-sm">({book.rating} Stars)</span>
+            <span className="text-xs lg:text-sm">({rating} Stars)</span>
           </div>
         </div>
 
-        <div className="flex items-center gap-3 text-xs lg:text-sm">
+        <div className="flex items-center gap-3 text-xs lg:text-sm absolute bottom-0">
           <button className="flex min-w-[132px] items-center justify-center gap-1 rounded-md bg-[#1C4336] py-1.5 text-white transition-all hover:opacity-80 lg:py-1.5">
             <svg
               xmlns="http://www.w3.org/2000/svg"

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Actions = () => {
+const Actions = ({ onSortBooks }) => {
   return (
     <header className="mb-8 lg:mb-10 mx-auto max-w-7xl">
       <div className="mx-auto flex items-end justify-between max-md:max-w-[95%] max-md:flex-col max-md:items-start max-md:space-y-4">
@@ -51,6 +51,7 @@ const Actions = () => {
             className="cursor-pointer rounded-md border px-4 py-2 text-center text-gray-600"
             name="sortBy"
             id="sortBy"
+            onChange={(e) => onSortBooks(e.target.value)}
           >
             <option value="">Sort</option>
             <option value="name_asc">Name (A-Z)</option>
