@@ -10,6 +10,7 @@ const allBooks = [
     publish_date: "July 11, 1960",
     price: 10.99,
     image: "./images/book.png",
+    isFavorite: false,
     rating: 4,
   },
   {
@@ -19,6 +20,7 @@ const allBooks = [
     publish_date: "June 8, 1949",
     price: 9.99,
     image: "./images/book.png",
+    isFavorite: false,
     rating: 5,
   },
   {
@@ -28,6 +30,7 @@ const allBooks = [
     publish_date: "April 10, 1925",
     price: 11.99,
     image: "./images/book.png",
+    isFavorite: false,
     rating: 5,
   },
   {
@@ -37,6 +40,7 @@ const allBooks = [
     publish_date: "July 11, 1960",
     price: 10.99,
     image: "./images/book.png",
+    isFavorite: false,
     rating: 4,
   },
   {
@@ -46,6 +50,7 @@ const allBooks = [
     publish_date: "June 26, 1997",
     price: 12.99,
     image: "./images/book.png",
+    isFavorite: false,
     rating: 5,
   },
   {
@@ -55,6 +60,7 @@ const allBooks = [
     publish_date: "July 16, 1951",
     price: 9.99,
     image: "./images/book.png",
+    isFavorite: false,
     rating: 4,
   },
   {
@@ -64,6 +70,7 @@ const allBooks = [
     publish_date: "September 17, 1954",
     price: 8.99,
     image: "./images/book.png",
+    isFavorite: false,
     rating: 4,
   },
   {
@@ -73,6 +80,7 @@ const allBooks = [
     publish_date: "January 28, 1813",
     price: 7.99,
     image: "./images/book.png",
+    isFavorite: false,
     rating: 5,
   },
   {
@@ -82,6 +90,7 @@ const allBooks = [
     publish_date: "August 17, 1945",
     price: 8.99,
     image: "./images/book.png",
+    isFavorite: false,
     rating: 5,
   },
   {
@@ -91,6 +100,7 @@ const allBooks = [
     publish_date: "September 21, 1937",
     price: 11.99,
     image: "./images/book.png",
+    isFavorite: false,
     rating: 5,
   },
   {
@@ -100,6 +110,7 @@ const allBooks = [
     publish_date: "July 29, 1954",
     price: 14.99,
     image: "./images/book.png",
+    isFavorite: false,
     rating: 5,
   },
   {
@@ -109,6 +120,7 @@ const allBooks = [
     publish_date: "June 1, 1932",
     price: 10.99,
     image: "./images/book.png",
+    isFavorite: false,
     rating: 4,
   },
   {
@@ -118,6 +130,7 @@ const allBooks = [
     publish_date: "January 1, 1818",
     price: 9.99,
     image: "./images/book.png",
+    isFavorite: false,
     rating: 5,
   },
   {
@@ -127,6 +140,7 @@ const allBooks = [
     publish_date: "June 20, 1890",
     price: 12.99,
     image: "./images/book.png",
+    isFavorite: false,
     rating: 4,
   },
   {
@@ -136,6 +150,7 @@ const allBooks = [
     publish_date: "October 18, 1851",
     price: 11.99,
     image: "./images/book.png",
+    isFavorite: false,
     rating: 4,
   },
   {
@@ -145,6 +160,7 @@ const allBooks = [
     publish_date: "May 26, 1897",
     price: 8.99,
     image: "./images/book.png",
+    isFavorite: false,
     rating: 5,
   },
   {
@@ -154,6 +170,7 @@ const allBooks = [
     publish_date: "December 10, 1884",
     price: 9.99,
     image: "./images/book.png",
+    isFavorite: false,
     rating: 4,
   },
   {
@@ -163,6 +180,7 @@ const allBooks = [
     publish_date: "8th century BC",
     price: 7.99,
     image: "./images/book.png",
+    isFavorite: false,
     rating: 5,
   },
   {
@@ -172,6 +190,7 @@ const allBooks = [
     publish_date: "January 14, 1963",
     price: 10.99,
     image: "./images/book.png",
+    isFavorite: false,
     rating: 4,
   },
   {
@@ -181,6 +200,7 @@ const allBooks = [
     publish_date: "June 1, 1942",
     price: 9.99,
     image: "./images/book.png",
+    isFavorite: false,
     rating: 4,
   },
 ];
@@ -213,13 +233,25 @@ const Main = () => {
     );
     setBooks([...filteredBooks]);
   };
+
+  const handleFavourite = (bookId) => {
+    setBooks(
+      books.map((book) => {
+        if (book.id === bookId) {
+          return { ...book, isFavorite: !book.isFavorite };
+        } else {
+          return book;
+        }
+      })
+    );
+  };
   return (
     <main className="my-10 lg:my-14">
       <Actions
         onSortBooks={handleSortBooks}
         onSearchBooks={handleSearchBooks}
       />
-      <Books books={books} />
+      <Books books={books} onFav={handleFavourite} />
     </main>
   );
 };
