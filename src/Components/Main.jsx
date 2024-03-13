@@ -206,9 +206,19 @@ const Main = () => {
     }
     setBooks([...sortedBooks]);
   };
+
+  const handleSearchBooks = (bookName) => {
+    const filteredBooks = books.filter((book) =>
+      book.title.toLowerCase().includes(bookName.toLowerCase())
+    );
+    setBooks([...filteredBooks]);
+  };
   return (
     <main className="my-10 lg:my-14">
-      <Actions onSortBooks={handleSortBooks} />
+      <Actions
+        onSortBooks={handleSortBooks}
+        onSearchBooks={handleSearchBooks}
+      />
       <Books books={books} />
     </main>
   );
