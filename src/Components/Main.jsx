@@ -228,7 +228,9 @@ const Main = () => {
   };
 
   const handleSearchBooks = (bookName) => {
-    const filteredBooks = books.filter((book) =>
+    let filteredBooks;
+
+    filteredBooks = allBooks.filter((book) =>
       book.title.toLowerCase().includes(bookName.toLowerCase())
     );
     setBooks([...filteredBooks]);
